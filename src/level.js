@@ -17,6 +17,10 @@ export default class Level extends Phaser.Scene {
     super({ key: 'level' });
   }
 
+  init(data){
+    this.stars = data.bubbles;
+  }
+
   /**
    * Creación de los elementos de la escena principal de juego
    */
