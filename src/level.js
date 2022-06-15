@@ -13,8 +13,8 @@ export default class Level extends Phaser.Scene {
   /**
    * Constructor de la escena
    */
-  constructor() {
-    super({ key: 'level' });
+    constructor() {
+        super({ key: 'level' });
   }
 
   init(data){
@@ -24,18 +24,17 @@ export default class Level extends Phaser.Scene {
   /**
    * Creación de los elementos de la escena principal de juego
    */
-  create() {
-    this.stars = 10;
-    this.bases = this.add.group();
-    this.player = new Player(this, 200, 300);
+    create() {
+        this.bases = this.add.group();
+        this.player = new Player(this, 200, 300);
 
-    new Platform(this, this.player, this.bases, 150, 350);
-    new Platform(this, this.player, this.bases, 850, 350);
-    new Platform(this, this.player, this.bases, 500, 200);
-    new Platform(this, this.player, this.bases, 150, 100);
-    new Platform(this, this.player, this.bases, 850, 100);
-    this.spawn();
-  }
+        new Platform(this, this.player, this.bases, 150, 350);
+        new Platform(this, this.player, this.bases, 850, 350);
+        new Platform(this, this.player, this.bases, 500, 200);
+        new Platform(this, this.player, this.bases, 150, 100);
+        new Platform(this, this.player, this.bases, 850, 100);
+        this.spawn();
+    }
 
   /**
    * Genera una estrella en una de las bases del escenario

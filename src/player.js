@@ -11,20 +11,23 @@ export default class Player extends Phaser.GameObjects.Sprite {
    * @param {number} x Coordenada X
    * @param {number} y Coordenada Y
    */
-  constructor(scene, x, y) {
-    super(scene, x, y, 'player');
-    this.score = 0;
-    this.scene.add.existing(this);
-    this.scene.physics.add.existing(this);
-    // Queremos que el jugador no se salga de los límites del mundo
-    this.body.setCollideWorldBounds();
-    this.speed = 300;
-    this.jumpSpeed = -400;
-    // Esta label es la UI en la que pondremos la puntuación del jugador
-    this.label = this.scene.add.text(10, 10, "");
-    this.cursors = this.scene.input.keyboard.createCursorKeys();
-    this.updateScore();
-  }
+    constructor(scene, x, y) {
+        super(scene, x, y, 'player');
+        this.score = 0;
+        this.scene.add.existing(this);
+        this.scene.physics.add.existing(this);
+
+        // Queremos que el jugador no se salga de los límites del mundo
+        this.body.setCollideWorldBounds();
+        this.speed = 300;
+        this.jumpSpeed = -400;
+
+        // Esta label es la UI en la que pondremos la puntuación del jugador
+        this.label = this.scene.add.text(10, 10, "");
+        this.cursors = this.scene.input.keyboard.createCursorKeys();
+        this.lives = 2;
+        this.updateLives();
+    }
 
   /**
    * El jugador ha recogido una estrella por lo que este método añade un punto y
@@ -32,14 +35,14 @@ export default class Player extends Phaser.GameObjects.Sprite {
    */
   point() {
     this.score++;
-    this.updateScore();
+    this.updateLives();
   }
   
   /**
-   * Actualiza la UI con la puntuación actual
+   * Actualiza la UI con las vidas actuales
    */
-  updateScore() {
-    this.label.text = 'Score: ' + this.score;
+  updateLives() {
+    this.label.text = 'Vidas: ' + this.lives;
   }
 
   /**
