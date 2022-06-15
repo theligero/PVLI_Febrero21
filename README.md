@@ -1,3 +1,3 @@
-# Juego simple con Phaser
+# Examen PVLI Febrero 2021
 
-Este juego ha sido desarrollado por Carlos León Aznar (<https://github.com/cleongh/simplephasergame>). En este repositorio solo se ha hecho una reorganización del código y de los assets usados para su desarrollo.
+El juego está desarrollado a partir de la plantilla (https://github.com/cleongh/simplephasergame) publicada por los profesores de la asignatura de PVLI Carlos León Aznar y Guillermo Jiménez, con el objetivo de practicar la asignatura y utilizarlo de cara a futuros exámenes de la asignatura.

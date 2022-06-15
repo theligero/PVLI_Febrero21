@@ -27,23 +27,7 @@ export default class Level extends Phaser.Scene {
     create() {
         this.bases = this.add.group();
         this.player = new Player(this, 200, 300);
-
-        new Platform(this, this.player, this.bases, 150, 350);
-        new Platform(this, this.player, this.bases, 850, 350);
-        new Platform(this, this.player, this.bases, 500, 200);
-        new Platform(this, this.player, this.bases, 150, 100);
-        new Platform(this, this.player, this.bases, 850, 100);
-        this.spawn();
     }
-
-  /**
-   * Genera una estrella en una de las bases del escenario
-   * @param {Array<Base>} from Lista de bases sobre las que se puede crear una estrella
-   * Si es null, entonces se crea aleatoriamente sobre cualquiera de las bases existentes
-   */
-  spawn(from = null) {
-    Phaser.Math.RND.pick(from || this.bases.children.entries).spawn();
-  }
 
   /**
    * Método que se ejecuta al coger una estrella. Se pasa la base
@@ -58,7 +42,6 @@ export default class Level extends Phaser.Scene {
       else {
         let s = this.bases.children.entries;
         this.spawn(s.filter(o => o !== base));
-
       }
   }
 }

@@ -9,7 +9,7 @@ import MenuScene from './menu.js';
  */
 let config = {
     type: Phaser.AUTO,
-    width:  1000,
+    width:  2000,
     height: 500,
     scale: {
         // mode: Phaser.Scale.FIT,  
