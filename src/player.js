@@ -1,4 +1,5 @@
-import Star from './star.js';
+import Bubble from './bubble.js';
+
 /**
  * Clase que representa el jugador del juego. El jugador se mueve por el mundo usando los cursores.
  * También almacena la puntuación o número de estrellas que ha recogido hasta el momento.
@@ -19,19 +20,15 @@ export default class Player extends Phaser.GameObjects.Sprite {
 
         this.speed = 300;
 
-        // Esta label es la UI en la que pondremos la puntuación del jugador
-        this.label = this.scene.add.text(60, 60, "");
         this.setInput();
-        this.lives = 2;
-        this.updateLives();
     }
 
 
-    /**
-    * El jugador ha recogido una estrella por lo que este método añade un punto y
-    * actualiza la UI con la puntuación actual.
-    */
 
+    /**
+     * El jugador ha recogido una estrella por lo que este método añade un punto y
+     * actualiza la UI con la puntuación actual.
+     */
     point() {
         this.score++;
         this.updateLives();
@@ -40,12 +37,6 @@ export default class Player extends Phaser.GameObjects.Sprite {
     setInput() {
         this.a = this.scene.input.keyboard.addKey('A');
         this.d = this.scene.input.keyboard.addKey('D');
-    }
-  
-
-    /**Actualiza la UI con las vidas actuales */
-    updateLives() {
-        this.label.text = 'Vidas: ' + this.lives;
     }
 
 
@@ -57,6 +48,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
 
     preUpdate(t, dt) {
         super.preUpdate(t, dt);
+
         if (this.a.isDown) {
             this.body.setVelocityX(-this.speed);
         }

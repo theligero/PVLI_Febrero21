@@ -4,21 +4,20 @@
  * una nueva estrella en otra posición, si el juego no ha terminado.
  * @extends Phaser.GameObjects.Sprite
  */
-export default class Star extends Phaser.GameObjects.Sprite {
+export default class Bubble extends Phaser.GameObjects.Sprite {
   
   /**
-   * Constructor de Star
+   * Constructor de Bubble
    * @param {Sceme} scene Escena en la que aparece la estrella
-   * @param {Base} base Objeto base sobre el que se va a dibujar la estrella
    * @param {number} x coordenada x
    * @param {number} y coordenada y
+   * @param {number} velocityX velocidad en x
+   * @param {number} velocityY velocidad en y
    */
   constructor(scene, base, x, y) {
     super(scene, x, y, 'star');
     this.scene.add.existing(this);
     this.scene.physics.add.existing(this, true);
-    this.y -= this.height;
-    this.base = base;
   }
 
   /**
