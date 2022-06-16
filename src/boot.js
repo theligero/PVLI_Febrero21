@@ -17,11 +17,11 @@ export default class Boot extends Phaser.Scene {
    * Carga de los assets del juego
    */
   preload() {
-    // Con setPath podemos establecer el prefijo que se añadirá a todos los load que aparecen a continuación
-    this.load.setPath('assets/sprites/');
-    this.load.image('platform', 'platform.png');
-    this.load.image('star', 'star.png');
-    this.load.image('player', 'player.png');
+      // Con setPath podemos establecer el prefijo que se añadirá a todos los load que aparecen a continuación
+      this.load.setPath('assets/sprites/');
+      this.load.image('platform', 'platform.png');
+      this.load.image('star', 'star.png');
+      this.load.spritesheet('player', 'spritesheet.png', { frameWidth: 64, frameHeight: 64 });
   }
 
   /**

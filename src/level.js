@@ -35,19 +35,16 @@ export default class Level extends Phaser.Scene {
         var debug = false;
 
         this.lives = 2;
-        this.bases = this.add.group();
+        this.bases = this.add.group(); // Agrupación de muros
         this.player = new Player(this, 500, 436);
 
+        // Muros que delimitan el mapa
         new Wall(this, 0, 0, 5000, 64, this.bases, this.player);
         new Wall(this, 0, 500, 5000, 64, this.bases, this.player);
         new Wall(this, 0, 0, 64, 1100, this.bases, this.player);
         new Wall(this, 2000, 0, 64, 1100, this.bases, this.player);
 
-        this.label = this.add.text(60, 60, "");
-        this.updateLives();
-        // this.label.startFollow(this.player, false, 1, 1, 180, 0);
-
-
+        // Se sigue al jugador nada más se mueve y con un offset en 'y' de 180
         this.cameras.main.startFollow(this.player, false, 1, 1, 0, 180);
 
         this.cameras.main.setDeadzone(500, 250);
@@ -59,7 +56,7 @@ export default class Level extends Phaser.Scene {
             graphics.strokeRect(200, 200, this.cameras.main.deadzone.width, this.cameras.main.deadzone.height);
         }
 
-        this.text = this.add.text(32, 32).setScrollFactor(0).setFontSize(64).setColor('#ffffff');
+        this.text = this.add.text(60, 40).setScrollFactor(0).setFontSize(25).setColor('#ffffff');
     }
 
     update() {
@@ -67,37 +64,11 @@ export default class Level extends Phaser.Scene {
 
         if (cam.deadzone) {
             this.text.setText([
-                'ScrollX: ' + cam.scrollX,
-                'ScrollY: ' + cam.scrollY,
-                'MidX: ' + cam.midPoint.x,
-                'MidY: ' + cam.midPoint.y,
-                'deadzone left: ' + cam.deadzone.left,
-                'deadzone right: ' + cam.deadzone.right,
-                'deadzone top: ' + cam.deadzone.top,
-                'deadzone bottom: ' + cam.deadzone.bottom
-            ]);
-        }
-        else if (cam._tb) {
-            this.text.setText([
-                'Cam Control: ' + this.moveCam,
-                'ScrollX: ' + cam.scrollX,
-                'ScrollY: ' + cam.scrollY,
-                'MidX: ' + cam.midPoint.x,
-                'MidY: ' + cam.midPoint.y,
-                'tb x: ' + cam._tb.x,
-                'tb y: ' + cam._tb.y,
-                'tb right: ' + cam._tb.right,
-                'tb bottom: ' + cam._tb.bottom
+                'Vidas: ' + this.lives,
             ]);
         }
     }
 
-    /**
-     * Actualiza la UI con las vidas actuales 
-     */
-    updateLives() {
-        this.label.text = 'Vidas: ' + this.lives;
-    }
 
   /**
    * Método que se ejecuta al coger una estrella. Se pasa la base

@@ -21,6 +21,8 @@ export default class Player extends Phaser.GameObjects.Sprite {
         this.speed = 300;
 
         this.setInput();
+        this.setAnimation();
+        this.play('player_idle');
     }
 
 
@@ -37,6 +39,15 @@ export default class Player extends Phaser.GameObjects.Sprite {
     setInput() {
         this.a = this.scene.input.keyboard.addKey('A');
         this.d = this.scene.input.keyboard.addKey('D');
+    }
+
+    setAnimation() {
+        this.scene.anims.create({
+            key: 'player_idle',
+            frames: this.anims.generateFrameNumbers('player', { start: 0, end: 2 }),
+            frameRate: 2,
+            repeat: -1 // Animación en bucle
+        });
     }
 
 
