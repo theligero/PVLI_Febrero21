@@ -10,23 +10,49 @@ import Player from './player.js';
  * @extends Phaser.Scene
  */
 export default class Level extends Phaser.Scene {
-  /**
-   * Constructor de la escena
-   */
+
+    /** 
+     *  Constructor de la escena 
+     */
     constructor() {
         super({ key: 'level' });
-  }
+    }
 
-  init(data){
-    this.stars = data.bubbles;
-  }
+    /**
+     * Paso de parámetros desde la primera escena a ésta
+     * @param {any} data Los datos recibidos del menú
+     */
+    init(data) {
+        this.bubbles = data.bubbles;
+    }
 
-  /**
-   * Creación de los elementos de la escena principal de juego
-   */
+
+    /** 
+     *  Creación de los elementos de la escena principal de juego 
+     */
     create() {
         this.bases = this.add.group();
-        this.player = new Player(this, 200, 300);
+        this.player = new Player(this, 500, 436);
+
+        // Suelo
+        new Platform(this, this.player, this.bases, 128, 500);
+        new Platform(this, this.player, this.bases, 384, 500);
+        new Platform(this, this.player, this.bases, 640, 500);
+        new Platform(this, this.player, this.bases, 896, 500);
+
+        // Paredes
+        new Platform(this, this.player, this.bases, 0, 158).setAngle(90);
+        new Platform(this, this.player, this.bases, 0, 341).setAngle(90);
+
+        // Techo
+        new Platform(this, this.player, this.bases, 128, 0);
+        new Platform(this, this.player, this.bases, 384, 0);
+        new Platform(this, this.player, this.bases, 640, 0);
+        new Platform(this, this.player, this.bases, 896, 0);
+
+        var camera = this.cameras.main;
+
+        /*camera.x = this.player.x;*/
     }
 
   /**
