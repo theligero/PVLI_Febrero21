@@ -11,14 +11,17 @@ export default class Bubble extends Phaser.GameObjects.Sprite {
    * @param {Sceme} scene Escena en la que aparece la estrella
    * @param {number} x coordenada x
    * @param {number} y coordenada y
-   * @param {number} velocityX velocidad en x
-   * @param {number} velocityY velocidad en y
+   * @param {number} directionX dirección en x
+   * @param {number} directionY dirección en y
+   * @param {Phaser.GameObjects.Group} bubblesGroup Grupo en el que se incluirán las pompas
    */
-  constructor(scene, base, x, y) {
-    super(scene, x, y, 'star');
-    this.scene.add.existing(this);
-    this.scene.physics.add.existing(this, true);
-  }
+    constructor(scene, x, y, directionX, directionY, bubblesGroup) {
+        super(scene, x, y, 'star');
+        this.scene.add.existing(this);
+        this.scene.physics.add.existing(this, true);
+        bubblesGroup.add(this);
+        moveTo(this.scene.player.x, this.scene.player.y);
+    }
 
   /**
    * Redefinición del preUpdate de Phaser
@@ -31,7 +34,7 @@ export default class Bubble extends Phaser.GameObjects.Sprite {
     if (this.scene.physics.overlap(this.scene.player, this)) {
         // Delegamos en la escena para decidir qué hacer al 
         // haber cogido una estrella
-        this.scene.starPickt(this.base);
+        this.scene.player.looseLives();
         this.destroy();
     }
   }

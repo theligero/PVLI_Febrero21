@@ -14,7 +14,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
    */
     constructor(scene, x, y) {
         super(scene, x, y, 'player');
-        this.score = 0;
+        this.lives = 2;
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this);
 
@@ -25,22 +25,28 @@ export default class Player extends Phaser.GameObjects.Sprite {
         this.play('player_idle');
     }
 
-
-
     /**
-     * El jugador ha recogido una estrella por lo que este método añade un punto y
-     * actualiza la UI con la puntuación actual.
+     * Método para pérdida de vidas cuando se colisiona con una
+     * pompa, y si se llega a 0 vidas se llamá al fin de partida
      */
-    point() {
-        this.score++;
-        this.updateLives();
+    looseLives() {
+        this.lives--;
+        if (this.lives == 0) {
+            this.scene.finishGame();
+        }
     }
 
+    /**
+     * Método de inputs para la A y la D 
+     */
     setInput() {
         this.a = this.scene.input.keyboard.addKey('A');
         this.d = this.scene.input.keyboard.addKey('D');
     }
 
+    /**
+     * Método para la animación básica de 3 frames 
+     */
     setAnimation() {
         this.scene.anims.create({
             key: 'player_idle',
@@ -56,7 +62,6 @@ export default class Player extends Phaser.GameObjects.Sprite {
     * ya son gestionadas por la estrella (no gestionar las colisiones dos veces)
     * @override
     */
-
     preUpdate(t, dt) {
         super.preUpdate(t, dt);
 
@@ -72,5 +77,4 @@ export default class Player extends Phaser.GameObjects.Sprite {
             this.body.setVelocityX(0);
         }
     }
-
 }
