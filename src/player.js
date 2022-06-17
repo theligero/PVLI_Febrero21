@@ -32,7 +32,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
     looseLives() {
         this.lives--;
         if (this.lives == 0) {
-            this.scene.finishGame();
+            this.scene.finishGame('defeat');
         }
     }
 

@@ -24,7 +24,9 @@ export default class Level extends Phaser.Scene {
      * @param {any} data Los datos recibidos del menú
      */
     init(data) {
-        this.bubbles = data.bubbles;
+        // Creo nuevo parámetro bubbles 
+        // con el mismo valor que bubbles de la escena anterior
+        this.bubbles = data.bubbles; 
     }
 
 
@@ -85,9 +87,11 @@ export default class Level extends Phaser.Scene {
     }
 
     /**
-     * Método llamado por el jugador para terminar la partida 
+     * Método llamado por el jugador para terminar la partida
+     * @param {text} gameFinale resultado final de la partida
      */
-    finishGame() {
-        this.scene.start('end');
+    finishGame(gameFinale) {
+        if (gameFinale == 'defeat') { this.scene.start('end', { didIWin: false }); }
+        else { this.scene.start('end', { didIWin: true }); }
     }
 }
